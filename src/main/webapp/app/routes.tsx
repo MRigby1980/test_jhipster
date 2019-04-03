@@ -24,6 +24,11 @@ const Admin = Loadable({
   loader: () => import(/* webpackChunkName: "administration" */ 'app/modules/administration'),
   loading: () => <div>loading ...</div>
 });
+
+const Reports = Loadable({
+    loader: () => import(/* webpackChunkName: "reports" */ 'app/modules/reports'),
+    loading: () => <div>loading ...</div>
+});
 // tslint:enable
 
 const Routes = () => (
@@ -38,6 +43,7 @@ const Routes = () => (
       <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
       <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
       <PrivateRoute path="/entity" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        <PrivateRoute path="/reports" component={Reports} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
       <ErrorBoundaryRoute path="/" component={Home} />
     </Switch>
   </div>

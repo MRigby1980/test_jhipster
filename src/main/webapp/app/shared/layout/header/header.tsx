@@ -2,14 +2,18 @@ import './header.css';
 
 import React from 'react';
 
-import { Navbar, Nav, NavbarToggler, NavbarBrand, Collapse } from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, NavbarBrand, NavItem, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { NavLink as Link } from 'react-router-dom';
+import {NavLink, NavLink as Link} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading-bar';
-
 import { Home, Brand } from './header-components';
-import { AdminMenu, EntitiesMenu, AccountMenu } from './menus';
+import {AdminMenu, EntitiesMenu, AccountMenu, ReportMenu} from './menus';
+import authentication, {getSession} from 'app/shared/reducers/authentication';
+
+import {connect} from "react-redux";
+
+export interface IHeaderProps extends StateProps, DispatchProps {}
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -23,37 +27,37 @@ export interface IHeaderState {
   menuOpen: boolean;
 }
 
-export default class Header extends React.Component<IHeaderProps, IHeaderState> {
+export class Header extends React.Component<IHeaderProps, IHeaderState> {
   state: IHeaderState = {
     menuOpen: false
   };
-
-  renderDevRibbon = () =>
-    this.props.isInProduction === false ? (
-      <div className="ribbon dev">
-        <a href="">Development</a>
-      </div>
-    ) : null;
 
   toggleMenu = () => {
     this.setState({ menuOpen: !this.state.menuOpen });
   };
 
-  render() {
-    const { isAuthenticated, isAdmin, isSwaggerEnabled, isInProduction } = this.props;
+    componentDidMount() {
+        this.props.getSession();
+    }
 
-    /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
+  render() {
+    const { isAuthenticated, isAdmin, isSwaggerEnabled } = this.props;
+
+    const { account } = this.props;
 
     return (
       <div id="app-header">
-        {this.renderDevRibbon()}
         <LoadingBar className="loading-bar" />
         <Navbar dark expand="sm" fixed="top" className="jh-navbar">
           <NavbarToggler aria-label="Menu" onClick={this.toggleMenu} />
           <Brand />
           <Collapse isOpen={this.state.menuOpen} navbar>
             <Nav id="header-tabs" className="ml-auto" navbar>
+                <NavItem className="d-flex align-items-center">
+                    <span style={{color: "white"}}>{ account.login }</span>
+                </NavItem>
               <Home />
+                {isAuthenticated && <ReportMenu />}
               {isAuthenticated && <EntitiesMenu />}
               {isAuthenticated && isAdmin && <AdminMenu showSwagger={isSwaggerEnabled} />}
               <AccountMenu isAuthenticated={isAuthenticated} />
@@ -64,3 +68,18 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
     );
   }
 }
+
+const mapStateToProps = storeState => ({
+    account: storeState.authentication.account,
+    isAuthenticated: storeState.authentication.isAuthenticated
+});
+
+const mapDispatchToProps = { getSession };
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

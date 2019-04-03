@@ -5,6 +5,8 @@ import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import appConfig from 'app/config/constants';
+import {getSession} from "app/shared/reducers/authentication";
+import {connect} from "react-redux";
 
 export const NavDropdown = props => (
   <UncontrolledDropdown nav inNavbar id={props.id}>
@@ -26,9 +28,9 @@ export const BrandIcon = props => (
 
 export const Brand = props => (
   <NavbarBrand tag={Link} to="/" className="brand-logo">
-    <BrandIcon />
+    {/*<BrandIcon />*/}
     <span className="brand-title">Test_jhipster</span>
-    <span className="navbar-version">{appConfig.VERSION}</span>
+    {/*<span className="navbar-version">{appConfig.VERSION}</span>*/}
   </NavbarBrand>
 );
 
