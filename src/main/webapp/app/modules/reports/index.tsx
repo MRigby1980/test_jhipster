@@ -1,12 +1,12 @@
 import React from 'react';
 
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
-import StudentReport from './studentReport';
+import Students from './students';
 
 
 const Routes = ({ match }) => (
     <div>
-        <ErrorBoundaryRoute exact path={`${match.url}/studentReport`} component={StudentReport} />
+        <ErrorBoundaryRoute path={`${match.url}/students`} component={Students} />
     </div>
 );
 

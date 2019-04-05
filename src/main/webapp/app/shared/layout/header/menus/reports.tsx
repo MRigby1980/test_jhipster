@@ -7,7 +7,7 @@ import { NavDropdown } from '../header-components';
 
 const reportMenuItemsAuthenticated = (
     <>
-        <DropdownItem tag={Link} to="/reports/studentReport">
+        <DropdownItem tag={Link} to="/reports/students">
             <FontAwesomeIcon icon="wrench" fixedWidth /> Settings
         </DropdownItem>
     </>
@@ -15,7 +15,7 @@ const reportMenuItemsAuthenticated = (
 
 const reportMenuItems = (
     <>
-        <DropdownItem id="studentReport" tag={Link} to="/reports/studentReport">
+        <DropdownItem id="studentReport" tag={Link} to="/reports/students">
             <FontAwesomeIcon icon="sign-in-alt" fixedWidth /> Student Report
         </DropdownItem>
     </>

@@ -11,12 +11,14 @@ import activate, { ActivateState } from 'app/modules/account/activate/activate.r
 import password, { PasswordState } from 'app/modules/account/password/password.reducer';
 import settings, { SettingsState } from 'app/modules/account/settings/settings.reducer';
 import passwordReset, { PasswordResetState } from 'app/modules/account/password-reset/password-reset.reducer';
+import students, {StudentsState} from "app/modules/reports/students/students.reducer";
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
   readonly authentication: AuthenticationState;
   readonly applicationProfile: ApplicationProfileState;
   readonly administration: AdministrationState;
+  readonly students: StudentsState;
   readonly userManagement: UserManagementState;
   readonly register: RegisterState;
   readonly activate: ActivateState;
@@ -31,6 +33,7 @@ const rootReducer = combineReducers<IRootState>({
   authentication,
   applicationProfile,
   administration,
+    students,
   userManagement,
   register,
   activate,
