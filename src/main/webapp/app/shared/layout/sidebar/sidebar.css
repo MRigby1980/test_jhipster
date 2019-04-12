@@ -105,11 +105,17 @@ Navbar styles
     color: #ffffff;
     background-color: #db3d44;
     border: none;
+    outline: none;
 }
 .btn-sidebar:hover {
     color: #ffffff;
     background-color: #ac2027;
     border: none;
+    outline: none;
+}
+.btn-sidebar:focus, .btn-sidebar:active:focus, .btn-sidebar.active:focus {
+    outline: none;
+    box-shadow: none;
 }
 .nav-item-sidebar {
     color: #ffffff;
@@ -122,12 +128,12 @@ Navbar styles
     border: none;
 }
 .list-group-item-sidebar {
-    color: #ffffff;
-    background-color: #db3d44;
-    border: none;
+    color: #ffffff !important;
+    background-color: #db3d44 !important;
+    border: none !important;
 }
 .list-group-item-sidebar:hover {
-    color: #ffffff;
-    background-color: #ac2027;
-    border: none;
+    color: #ffffff !important;
+    background-color: #ac2027 !important;
+    border: none !important;
 }

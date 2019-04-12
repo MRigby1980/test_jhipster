@@ -16,6 +16,7 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
+import {SideBar} from "app/shared/layout/sidebar/sidebar";
 
 export interface IAppProps extends StateProps, DispatchProps {}
 
@@ -27,6 +28,7 @@ export class App extends React.Component<IAppProps> {
 
   render() {
     const paddingTop = '60px';
+
     return (
       <Router>
         <div className="app-container" style={{ paddingTop }}>
@@ -44,14 +46,17 @@ export class App extends React.Component<IAppProps> {
               isSwaggerEnabled={this.props.isSwaggerEnabled}
             />
           </ErrorBoundary>
-          <div className="container-fluid view-container" id="app-view-container" style={{marginLeft: "275px"}}>
-            <Card className="jh-card">
-              <ErrorBoundary>
-                <AppRoutes />
-              </ErrorBoundary>
-            </Card>
-            <Footer />
-          </div>
+            <SideBar isAuthenticated={this.props.isAuthenticated} isAdmin={this.props.isAdmin} isSwaggerEnabled={this.props.isSwaggerEnabled} account={this.props.isAccount} getSession={getSession} />
+              {/*<div className="container-fluid view-container" id="app-view-container">*/}
+                      {/*<Card className="jh-card">*/}
+                          {/*<ErrorBoundary>*/}
+                            {/*<AppRoutes />*/}
+                          {/*</ErrorBoundary>*/}
+                      {/*</Card>*/}
+
+                {/*<Footer />*/}
+              {/*</div>*/}
+
         </div>
       </Router>
     );
@@ -61,6 +66,7 @@ export class App extends React.Component<IAppProps> {
 const mapStateToProps = ({ authentication, applicationProfile }: IRootState) => ({
   isAuthenticated: authentication.isAuthenticated,
   isAdmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ADMIN]),
+    isAccount: authentication.account,
   ribbonEnv: applicationProfile.ribbonEnv,
   isInProduction: applicationProfile.inProduction,
   isSwaggerEnabled: applicationProfile.isSwaggerEnabled

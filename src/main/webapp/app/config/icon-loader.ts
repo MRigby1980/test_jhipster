@@ -14,6 +14,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faList } from '@fortawesome/free-solid-svg-icons/faList';
 import { faTasks } from '@fortawesome/free-solid-svg-icons/faTasks';
 import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
@@ -48,6 +49,7 @@ export const loadIcons = () => {
     faList,
     faTasks,
     faBook,
+    faBars,
     faHdd,
     faClock,
     faSignInAlt,

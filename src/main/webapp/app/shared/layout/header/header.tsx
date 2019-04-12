@@ -66,7 +66,7 @@ export class Header extends React.Component<IHeaderProps, IHeaderState> {
           </Collapse>
         </Navbar>
 
-          <SideBar isAuthenticated={isAuthenticated} isAdmin={isAdmin} isSwaggerEnabled={isSwaggerEnabled} account={account} getSession={getSession} />
+          {/*<SideBar isAuthenticated={isAuthenticated} isAdmin={isAdmin} isSwaggerEnabled={isSwaggerEnabled} account={account} getSession={getSession} />*/}
 
       </div>
     );
