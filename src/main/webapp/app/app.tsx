@@ -44,7 +44,7 @@ export class App extends React.Component<IAppProps> {
               isSwaggerEnabled={this.props.isSwaggerEnabled}
             />
           </ErrorBoundary>
-          <div className="container-fluid view-container" id="app-view-container">
+          <div className="container-fluid view-container" id="app-view-container" style={{marginLeft: "275px"}}>
             <Card className="jh-card">
               <ErrorBoundary>
                 <AppRoutes />

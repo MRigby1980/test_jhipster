@@ -4,14 +4,15 @@ import React from 'react';
 
 import { Navbar, Nav, NavbarToggler, NavbarBrand, NavItem, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import {NavLink, NavLink as Link} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading-bar';
-import { Home, Brand } from './header-components';
+import {Home, Brand, NavDropdown} from './header-components';
 import {AdminMenu, EntitiesMenu, AccountMenu, ReportMenu} from './menus';
 import authentication, {getSession} from 'app/shared/reducers/authentication';
 
+
 import {connect} from "react-redux";
+import {SideBar} from "app/shared/layout/sidebar/sidebar";
 
 export interface IHeaderProps extends StateProps, DispatchProps {}
 
@@ -41,7 +42,7 @@ export class Header extends React.Component<IHeaderProps, IHeaderState> {
     }
 
   render() {
-    const { isAuthenticated, isAdmin, isSwaggerEnabled } = this.props;
+    const { isAuthenticated, isAdmin, isSwaggerEnabled, getSession } = this.props;
 
     const { account } = this.props;
 
@@ -64,6 +65,9 @@ export class Header extends React.Component<IHeaderProps, IHeaderState> {
             </Nav>
           </Collapse>
         </Navbar>
+
+          <SideBar isAuthenticated={isAuthenticated} isAdmin={isAdmin} isSwaggerEnabled={isSwaggerEnabled} account={account} getSession={getSession} />
+
       </div>
     );
   }

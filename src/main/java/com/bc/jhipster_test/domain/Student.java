@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="student")
@@ -21,6 +22,17 @@ public class Student {
 
     @Column(name="email")
     private String email;
+
+    public Student() {
+        // Empty constructor needed for Jackson.
+    }
+
+    public Student(Student student) {
+        this.id = student.getId();
+        this.firstName = student.getFirstName();
+        this.lastName = student.getLastName();
+        this.email = student.getEmail();
+    }
 
     public Integer getId() {
         return id;
@@ -52,5 +64,15 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+            "id='" + id + '\'' +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", email='" + email + '\'' +
+            "}";
     }
 }
